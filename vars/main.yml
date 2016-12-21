@@ -1,0 +1,20 @@
+---
+# vars file for jvzantvoort.vimconfig
+#
+vim_git_personal: "https://github.com/jvzantvoort/jvzantvoort-vim-config.git"
+
+vim_local_config: ".vim/settings/local.vim"
+
+vim_downloads:
+  - url: "https://tpo.pe/pathogen.vim"
+    dest: ".vim/autoload/pathogen.vim"
+
+vim_git:
+  - repo: "https://github.com/tomtom/tlib_vim.git"
+    dest: ".vim/bundle/tlib_vim"
+  - repo: "https://github.com/MarcWeber/vim-addon-mw-utils.git"
+    dest: ".vim/bundle/vim-addon-mw-utils"
+  - repo: "https://github.com/garbas/vim-snipmate.git"
+    dest: ".vim/bundle/vim-snipmate"
+  - repo: "https://github.com/scrooloose/nerdtree.git"
+    dest: ".vim/bundle/nerdtree"

@@ -1,0 +1,56 @@
+---
+- name: Clone vim config
+  git:
+    repo: "{{ vim_git_personal }}"
+    dest: "{{ ci_homedir }}/.vim"
+  become: yes
+  become_user: "{{ ci_username }}"
+
+- name: Link vim config
+  file:
+    src: "{{ ci_homedir }}/.vim/main.vim"
+    dest: "{{ ci_homedir }}/.vimrc"
+    owner: "{{ ci_username }}"
+    group: "{{ ci_groupname }}"
+    state: link
+
+- name: Create vim autoload dir
+  file:
+    path: "{{ ci_homedir }}/.vim/autoload"
+    state: directory
+    mode: 0755
+    owner: "{{ ci_username }}"
+    group: "{{ ci_groupname }}"
+
+- name: Create vim bundle dir
+  file:
+    path: "{{ ci_homedir }}/.vim/bundle"
+    state: directory
+    mode: 0755
+    owner: "{{ ci_username }}"
+    group: "{{ ci_groupname }}"
+
+- name: Download vim targets
+  get_url:
+    url: "{{ item.url }}"
+    dest: "{{ ci_homedir }}/{{ item.dest }}"
+    owner: "{{ ci_username }}"
+    group: "{{ ci_groupname }}"
+    mode: 0440
+  with_items: "{{ vim_downloads }}"
+
+- name: create local vim config
+  copy:
+    src: local.vim
+    dest: "{{ ci_homedir }}/{{ vim_local_config }}"
+    owner: "{{ ci_username }}"
+    group: "{{ ci_groupname }}"
+
+- name: Install VIM bundles
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.dest }}"
+  become: yes
+  become_user: "{{ ci_username }}"
+  with_items: "{{ vim_git }}"
+
