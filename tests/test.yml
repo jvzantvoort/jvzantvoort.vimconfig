@@ -1,5 +1,5 @@
 ---
 - hosts: testserver
   roles:
-    - { role: jvzantvoort.vimconfig, ci_groupname: root, ci_username: root, ci_homedir: "/root" }
+    - { role: jvzantvoort.vimconfig, vimconfig_groupname: root, vimconfig_username: root, vimconfig_homedir: "/root" }
 

@@ -7,40 +7,40 @@
 - name: Clone vim config
   git:
     repo: "{{ vim_git_personal }}"
-    dest: "{{ ci_homedir }}/.vim"
+    dest: "{{ vimconfig_homedir }}/.vim"
   become: yes
-  become_user: "{{ ci_username }}"
+  become_user: "{{ vimconfig_username }}"
 
 - name: Link vim config
   file:
-    src: "{{ ci_homedir }}/.vim/main.vim"
-    dest: "{{ ci_homedir }}/.vimrc"
-    owner: "{{ ci_username }}"
-    group: "{{ ci_groupname }}"
+    src: "{{ vimconfig_homedir }}/.vim/main.vim"
+    dest: "{{ vimconfig_homedir }}/.vimrc"
+    owner: "{{ vimconfig_username }}"
+    group: "{{ vimconfig_groupname }}"
     state: link
 
 - name: Create vim autoload dir
   file:
-    path: "{{ ci_homedir }}/.vim/autoload"
+    path: "{{ vimconfig_homedir }}/.vim/autoload"
     state: directory
     mode: 0755
-    owner: "{{ ci_username }}"
-    group: "{{ ci_groupname }}"
+    owner: "{{ vimconfig_username }}"
+    group: "{{ vimconfig_groupname }}"
 
 - name: Create vim bundle dir
   file:
-    path: "{{ ci_homedir }}/.vim/bundle"
+    path: "{{ vimconfig_homedir }}/.vim/bundle"
     state: directory
     mode: 0755
-    owner: "{{ ci_username }}"
-    group: "{{ ci_groupname }}"
+    owner: "{{ vimconfig_username }}"
+    group: "{{ vimconfig_groupname }}"
 
-- name: "update local.vim file {{ ci_homedir }}/.vim/local.vim"
+- name: "update local.vim file {{ vimconfig_homedir }}/.vim/local.vim"
   template:
     src: local_vim.jinja2
-    dest: "{{ ci_homedir }}/.vim/local.vim"
-    owner: "{{ ci_username }}"
-    group: "{{ ci_groupname }}"
+    dest: "{{ vimconfig_homedir }}/.vim/local.vim"
+    owner: "{{ vimconfig_username }}"
+    group: "{{ vimconfig_groupname }}"
     mode: 0644
 
 - name: Install VIM bundles
@@ -48,6 +48,6 @@
     repo: "{{ item.repo }}"
     dest: "{{ item.dest }}"
   become: yes
-  become_user: "{{ ci_username }}"
+  become_user: "{{ vimconfig_username }}"
   with_items: "{{ vim_git }}"
 

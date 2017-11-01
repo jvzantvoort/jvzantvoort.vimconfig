@@ -1,4 +1,10 @@
 ---
-ci_groupname: users
-ci_username: admin
-ci_homedir: "/home/{{ ci_username }}"
+vimconfig_groupname: users
+vimconfig_username: admin
+vimconfig_homedir: "/home/{{ vimconfig_username }}"
+vimconfig_author: "Some Dev"
+vimconfig_copyright: ""
+vimconfig_license: "MIT"
+vimconfig_mailaddress: "foo@bar.oom"
+vimconfig_company: "bar"
+
