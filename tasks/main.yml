@@ -35,21 +35,13 @@
     owner: "{{ ci_username }}"
     group: "{{ ci_groupname }}"
 
-- name: Download vim targets
-  get_url:
-    url: "{{ item.url }}"
-    dest: "{{ ci_homedir }}/{{ item.dest }}"
+- name: "update local.vim file {{ ci_homedir }}/.vim/local.vim"
+  template:
+    src: local_vim.jinja2
+    dest: "{{ ci_homedir }}/.vim/local.vim"
     owner: "{{ ci_username }}"
     group: "{{ ci_groupname }}"
-    mode: 0440
-  with_items: "{{ vim_downloads }}"
-
-- name: create local vim config
-  copy:
-    src: local.vim
-    dest: "{{ ci_homedir }}/{{ vim_local_config }}"
-    owner: "{{ ci_username }}"
-    group: "{{ ci_groupname }}"
+    mode: 0644
 
 - name: Install VIM bundles
   git:
