@@ -17,7 +17,7 @@
         state: present
 
   roles:
-    - role: jvzantvoort.vimconfig
+    - role: role_under_test
       vimconfig_groupname: testgroup
       vimconfig_username: testuser
       vimconfig_author: "Foo Bar"
