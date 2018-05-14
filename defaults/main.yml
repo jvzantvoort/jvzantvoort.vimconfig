@@ -1,6 +1,6 @@
 ---
-vimconfig_groupname: users
-vimconfig_username: admin
+vimconfig_groupname: "users"
+vimconfig_username: "admin"
 vimconfig_homedir: "/home/{{ vimconfig_username }}"
 vimconfig_author: "Some Dev"
 vimconfig_copyright: ""
