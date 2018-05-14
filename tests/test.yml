@@ -1,5 +1,19 @@
 ---
-- hosts: testserver
-  roles:
-    - { role: jvzantvoort.vimconfig, vimconfig_groupname: root, vimconfig_username: root, vimconfig_homedir: "/root" }
+- hosts: all
 
+  vars:
+    vimconfig_groupname: foo
+    vimconfig_username: bar
+    vimconfig_author: "Foo Bar"
+    vimconfig_copyright: ""
+    vimconfig_mailaddress: "lala@email.com"
+    vimconfig_company: "none"
+
+  pre_tasks:
+    - name: Update apt cache.
+      apt: update_cache=yes cache_valid_time=600
+      when: ansible_os_family == 'Debian'
+      changed_when: false
+
+  roles:
+    - role: jvzantvoort.vimconfig
