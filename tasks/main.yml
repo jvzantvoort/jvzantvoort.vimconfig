@@ -13,8 +13,6 @@
   git:
     repo: "{{ vim_git_personal }}"
     dest: "{{ vimconfig_homedir }}/.vim"
-  become: yes
-  become_user: "{{ vimconfig_username }}"
 
 - name: Link vim config
   file:
@@ -52,7 +50,5 @@
   git:
     repo: "{{ item.repo }}"
     dest: "{{ item.dest }}"
-  become: yes
-  become_user: "{{ vimconfig_username }}"
   with_items: "{{ vim_git }}"
 
