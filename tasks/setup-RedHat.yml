@@ -1,0 +1,10 @@
+---
+
+- name: install the latest version of git
+  yum: name={{ item }} state=latest
+  with_items:
+    - git
+    - python-flake8
+    - vim-enhanced
+    - vim-common
+

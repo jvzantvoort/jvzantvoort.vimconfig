@@ -1,8 +1,10 @@
 ---
-- name: install the latest version of git
-  yum: name={{ item }} state=latest
-  with_items:
-    - git
+
+- include_tasks: setup-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include_tasks: setup-Debian.yml
+  when: ansible_os_family == 'Debian'
 
 - name: Clone vim config
   git:
