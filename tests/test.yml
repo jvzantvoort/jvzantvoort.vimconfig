@@ -14,6 +14,23 @@
       apt: update_cache=yes cache_valid_time=600
       when: ansible_os_family == 'Debian'
       changed_when: false
+    - name: "Add the {{ vimconfig_groupname }} group"
+      group:
+        name: "{{ vimconfig_groupname }}"
+        state: present
+    - name: Add the bar group
+      user:
+        name: "{{ vimconfig_username }}"
+        shell: /bin/bash
+        group: "{{ vimconfig_groupname }}"
+        state: present
 
   roles:
-    - role: jvzantvoort.vimconfig
+    - { role: jvzantvoort.vimconfig,
+        vimconfig_groupname: "{{ vimconfig_groupname }}",
+        vimconfig_username: "{{ vimconfig_username }}",
+        vimconfig_author: "{{ vimconfig_author }}",
+        vimconfig_copyright: "{{ vimconfig_copyright }}",
+        vimconfig_mailaddress: "{{ vimconfig_mailaddress }}",
+        vimconfig_company: "{{ vimconfig_company }}"}
+
