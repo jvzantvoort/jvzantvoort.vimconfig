@@ -1,6 +1,7 @@
 ---
 - hosts: all
-  become: yes
+  become: true
+  become_user: root
   gather_facts: yes
   pre_tasks:
     - name: Update apt cache.
