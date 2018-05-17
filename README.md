@@ -32,6 +32,11 @@ License
 
 MIT
 
+Other
+-----
+
+Tests fail at the moment
+
 Author Information
 ------------------
 
